@@ -20,8 +20,14 @@ public class Blur {
 
 	@SuppressLint("NewApi")
 	public static Bitmap apply(Context context, Bitmap sentBitmap, int radius) {
-
-        Bitmap bitmap = Bitmap.createScaledBitmap(sentBitmap, sentBitmap.getWidth()/2, sentBitmap.getHeight()/2, false);
+		Resources resources = context.getResources();
+		int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+		int naviHeight = 0;
+		if (resourceId > 0) {
+			naviHeight = resources.getDimensionPixelSize(resourceId);
+		}
+		Bitmap bitmapNoSoftBar = Bitmap.createBitmap(sentBitmap, 0, 0, sentBitmap.getWidth(), sentBitmap.getHeight() - naviHeight);
+        Bitmap bitmap = Bitmap.createScaledBitmap(bitmapNoSoftBar, bitmapNoSoftBar.getWidth()/2, bitmapNoSoftBar.getHeight()/2, false);
 
 		if (VERSION.SDK_INT > 16) {
 			final RenderScript rs = RenderScript.create(context);
