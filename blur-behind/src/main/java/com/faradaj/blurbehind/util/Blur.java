@@ -2,6 +2,7 @@ package com.faradaj.blurbehind.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build.VERSION;
 import android.renderscript.Allocation;
